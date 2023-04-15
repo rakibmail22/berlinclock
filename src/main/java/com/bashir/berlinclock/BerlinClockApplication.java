@@ -16,15 +16,17 @@ public class BerlinClockApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		String inputString = timeInputScanner.takeInput(System.in);
-		timeInputScanner.parseTime(inputString)
-		                .ifPresentOrElse(time -> System.out.printf("Hour: %s, Minute: %s, Second %s%n",
-		                                                           time.getHour(),
-		                                                           time.getMinute(),
-		                                                           time.getSecond()),
-		                                 () -> System.out.println("Invalid Input String"));
+		String outputString = timeInputScanner.parseTime(inputString)
+		                                      .map(time -> new BerlinClockDisplay.BerlinClockDisplayBuilder()
+				                                      .hour(time.getHour())
+				                                      .minute(time.getMinute())
+				                                      .secod(time.getSecond())
+				                                      .build())
+		                                      .map(BerlinClockDisplay::display)
+		                                      .orElseGet(() -> "Invalid Input");
 
-
+		System.out.println(outputString);
 	}
 }
