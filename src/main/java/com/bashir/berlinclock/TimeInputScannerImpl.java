@@ -14,11 +14,22 @@ public class TimeInputScannerImpl implements TimeInputScanner {
 
 	@Override
 	public String takeInput(InputStream inputStream) {
-		return null;
+		System.out.println("Please input the time string: ");
+		Scanner sc = new Scanner(inputStream);
+		String input = "";
+		if (sc.hasNextLine()) {
+			input = sc.nextLine();
+		}
+
+		return input.trim();
 	}
 
 	@Override
 	public Optional<LocalTime> parseTime(String timeStr) {
-		return null;
+		try {
+			return Optional.of(LocalTime.parse(timeStr, DateTimeFormatter.ISO_LOCAL_TIME));
+		} catch (DateTimeException ex) {
+			return Optional.empty();
+		}
 	}
 }

@@ -17,5 +17,14 @@ public class BerlinClockApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		String inputString = timeInputScanner.takeInput(System.in);
+		timeInputScanner.parseTime(inputString)
+		                .ifPresentOrElse(time -> System.out.printf("Hour: %s, Minute: %s, Second %s%n",
+		                                                           time.getHour(),
+		                                                           time.getMinute(),
+		                                                           time.getSecond()),
+		                                 () -> System.out.println("Invalid Input String"));
+
+
 	}
 }
