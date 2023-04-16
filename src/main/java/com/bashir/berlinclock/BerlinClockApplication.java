@@ -1,5 +1,7 @@
 package com.bashir.berlinclock;
 
+import com.bashir.berlinclock.input.TimeInputScanner;
+import com.bashir.berlinclock.output.BerlinClockDisplay;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,15 +20,15 @@ public class BerlinClockApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		String inputString = timeInputScanner.takeInput(System.in);
-		String outputString = timeInputScanner.parseTime(inputString)
-		                                      .map(time -> new BerlinClockDisplay.BerlinClockDisplayBuilder()
-				                                      .hour(time.getHour())
-				                                      .minute(time.getMinute())
-				                                      .secod(time.getSecond())
-				                                      .build())
-		                                      .map(BerlinClockDisplay::display)
-		                                      .orElseGet(() -> "Invalid Input");
+		String displayText = timeInputScanner.parseTime(inputString)
+		                                     .map(time -> new BerlinClockDisplay.BerlinClockDisplayBuilder()
+				                                     .hour(time.getHour())
+				                                     .minute(time.getMinute())
+				                                     .secod(time.getSecond())
+				                                     .build())
+		                                     .map(BerlinClockDisplay::display)
+		                                     .orElseGet(() -> "Invalid Input");
 
-		System.out.println(outputString);
+		System.out.println(displayText);
 	}
 }

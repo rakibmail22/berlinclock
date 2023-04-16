@@ -1,17 +1,14 @@
-package com.bashir.berlinclock;
+package com.bashir.berlinclock.input;
 
-import lombok.RequiredArgsConstructor;
+import com.bashir.berlinclock.input.TimeInputScanner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.time.LocalTime;
 import java.util.Optional;
-import java.util.Scanner;
 
 @SpringBootTest
 public class TimeInputScannerTest {

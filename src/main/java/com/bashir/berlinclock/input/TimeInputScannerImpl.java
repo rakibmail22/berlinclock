@@ -1,4 +1,4 @@
-package com.bashir.berlinclock;
+package com.bashir.berlinclock.input;
 
 import org.springframework.stereotype.Service;
 

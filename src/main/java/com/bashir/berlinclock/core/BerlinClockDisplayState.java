@@ -1,4 +1,4 @@
-package com.bashir.berlinclock;
+package com.bashir.berlinclock.core;
 
 public class BerlinClockDisplayState {
 

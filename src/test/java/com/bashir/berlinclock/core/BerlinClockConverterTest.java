@@ -1,13 +1,14 @@
-package com.bashir.berlinclock;
+package com.bashir.berlinclock.core;
 
+import com.bashir.berlinclock.core.BerlinClockConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.bashir.berlinclock.BerlinClockDisplayState.OFF;
-import static com.bashir.berlinclock.BerlinClockDisplayState.RED;
-import static com.bashir.berlinclock.BerlinClockDisplayState.YELLOW;
+import static com.bashir.berlinclock.core.BerlinClockDisplayState.OFF;
+import static com.bashir.berlinclock.core.BerlinClockDisplayState.RED;
+import static com.bashir.berlinclock.core.BerlinClockDisplayState.YELLOW;
 
 public class BerlinClockConverterTest {
 
