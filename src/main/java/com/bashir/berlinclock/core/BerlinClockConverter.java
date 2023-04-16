@@ -8,7 +8,13 @@ import static com.bashir.berlinclock.core.BerlinClockDisplayState.YELLOW;
 
 public class BerlinClockConverter {
 
+	/**
+	 * @param hour valid hour integer
+	 * @return {@code List<String>} containing two row of converted String representation for hour sequentially
+	 */
 	public static List<String> convertHour(int hour) {
+		validateRange(hour, 0, 23, "Hour");
+
 		int firstRowTurnedOnLight = hour / 5;
 		int secondRowTurnedOnLight = hour % 5;
 
@@ -18,7 +24,13 @@ public class BerlinClockConverter {
 		);
 	}
 
+	/**
+	 * @param minute valid minute integer
+	 * @return {@code List<String>} containing two row of converted String representation for minute sequentially
+	 */
 	public static List<String> convertMinute(int minute) {
+		validateRange(minute, 0, 59, "Minute");
+
 		int firstRowTurnedOnLight = minute / 5;
 		int secondRowTurnedOnLight = minute % 5;
 
@@ -28,12 +40,19 @@ public class BerlinClockConverter {
 		);
 	}
 
+	/**
+	 * @param second valid second integer
+	 * @return {@code String} converted String representation for second
+	 */
 	public static String convertSecond(int second) {
+		validateRange(second, 0, 59, "Second");
 		return second % 2 == 0 ? YELLOW : OFF;
 	}
 
-	private static boolean isIndexDenotesQuarterOfHour(int minuteFirstRowIndex) {
-		return (minuteFirstRowIndex + 1) % 3 == 0;
+	private static void validateRange(int input, int min, int max, String paramType) {
+		if (input < min || input > max) {
+			throw new IllegalArgumentException("Invalid %s: %s".formatted(paramType, input));
+		}
 	}
 
 	private static String getRowString(int numberOfTurnedOnLight, RowType rowType, int numberOfColumns) {
